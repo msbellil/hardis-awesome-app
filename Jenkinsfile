@@ -27,7 +27,7 @@ withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login', keyFileVari
                                         sourceFiles: 'dist/hardis-awesome-app/',
                                         removePrefix: 'dist/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'node hardis-awesome-app/app.js'
+                                        execCommand: 'node /tmp/hardis-awesome-app/app.js'
                                     )
                                 ]
                             )

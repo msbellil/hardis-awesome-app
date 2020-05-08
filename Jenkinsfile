@@ -10,11 +10,12 @@ pipeline {
                 archiveArtifacts artifacts: 'dist/hardisawesomeapp.zip'
             }
         }
-        stage('DeployToRecette') {
+        stage('Deploiement Recette') {
             when {
                 branch 'master'
             }
             steps {
+              echo 'Running Deploiement Recette'
 withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'ubuntu')]){
                     sshPublisher(
                         failOnError: true,

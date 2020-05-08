@@ -36,5 +36,32 @@ pipeline {
                     )
                 }
             }
+      
+        stage('Deploiement production') {
+            when {
+                branch 'master'
+            }
+          steps {
+                 input 'Does the staging environment look OK?'
+                milestone(1)
+                    sshPublisher(
+                        failOnError: true,
+                        continueOnError: false,
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'recette', 
+                                transfers: [
+                                    sshTransfer(
+                                        sourceFiles: 'dist/hardis-awesome-app.zip',
+                                        removePrefix: 'dist/',
+                                        remoteDirectory: '/tmp',
+                                        execCommand: 'rm -rf * && unzip /tmp/hardis-awesome-app.zip && npm i --save express && sudo systemctl restart myapp'
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+                }
+            }
         }
 }

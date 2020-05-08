@@ -28,7 +28,7 @@ withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login', keyFileVari
                                         sourceFiles: 'dist/hardis-awesome-app.zip',
                                         removePrefix: 'dist/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'unzip /tmp/hardis-awesome-app.zip && node app.js'
+                                        execCommand: 'unzip /tmp/hardis-awesome-app.zip && npm i --save express && node app.js'
                                     )
                                 ]
                             )

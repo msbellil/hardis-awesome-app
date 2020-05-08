@@ -12,9 +12,6 @@ pipeline {
             }
         }
         stage('Deploiement Recette') {
-            when {
-                branch 'master'
-            }
             steps {
               echo 'Running Deploiement Recette'
 
@@ -39,9 +36,6 @@ pipeline {
             }
       
         stage('Deploiement production') {
-            when {
-                branch 'master'
-            }
           steps {
                  input 'Does the staging environment look OK?'
                 milestone(1)

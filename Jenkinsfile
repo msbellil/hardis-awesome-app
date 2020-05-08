@@ -24,7 +24,7 @@ withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login', keyFileVari
                                 configName: 'recette', 
                                 transfers: [
                                     sshTransfer(
-                                        sourceFiles: 'dist/hardisawsomeapp.zip',
+                                        sourceFiles: 'dist/hardisawesomeapp.zip',
                                         removePrefix: 'dist/',
                                         remoteDirectory: '/tmp',
                                         execCommand: 'node app.js'

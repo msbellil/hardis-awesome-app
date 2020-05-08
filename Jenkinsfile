@@ -6,7 +6,7 @@ pipeline {
                 echo 'Running build automation'
                 sh 'npm install'
                 sh 'ng build'
-                sh 'zip -r dist/hardis-awesome-app.zip hardis-awesome-app'
+                sh 'zip -r dist/hardis-awesome-app.zip .'
                 archiveArtifacts artifacts: 'dist/hardis-awesome-app.zip'
             }
         }

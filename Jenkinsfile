@@ -49,7 +49,7 @@ pipeline {
                         continueOnError: false,
                         publishers: [
                             sshPublisherDesc(
-                                configName: 'recette', 
+                                configName: 'production', 
                                 transfers: [
                                     sshTransfer(
                                         sourceFiles: 'dist/hardis-awesome-app.zip',

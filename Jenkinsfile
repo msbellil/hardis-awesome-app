@@ -6,7 +6,8 @@ pipeline {
                 echo 'Running build automation'
                 sh 'npm install'
                 sh 'ng build'
-                archiveArtifacts artifacts: 'dist/'
+                sh 'zip -r dist/hardis-awesome-app.zip hardis-awesome-app'
+                archiveArtifacts artifacts: 'dist/hardis-awesome-app.zip'
             }
         }
         stage('Deploiement Recette') {
@@ -24,10 +25,10 @@ withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login', keyFileVari
                                 configName: 'recette', 
                                 transfers: [
                                     sshTransfer(
-                                        sourceFiles: 'dist/hardis-awesome-app/',
+                                        sourceFiles: 'dist/hardis-awesome-app.zip',
                                         removePrefix: 'dist/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'node /tmp/hardis-awesome-app/app.js'
+                                        execCommand: 'unzip /tmp/hardis-awesome-app.zip && node /tmp/hardis-awesome-app/app.js'
                                     )
                                 ]
                             )

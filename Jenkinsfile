@@ -16,7 +16,7 @@ pipeline {
             }
             steps {
               echo 'Running Deploiement Recette'
-withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'ubuntu')]){
+
                     sshPublisher(
                         failOnError: true,
                         continueOnError: false,
@@ -37,5 +37,4 @@ withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login', keyFileVari
                 }
             }
         }
-}
 }

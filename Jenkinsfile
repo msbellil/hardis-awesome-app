@@ -28,7 +28,7 @@ pipeline {
                                         sourceFiles: 'dist/hardis-awesome-app.zip',
                                         removePrefix: 'dist/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'rm -rf * && unzip /tmp/hardis-awesome-app.zip && npm i --save express && systemctl stop myapp && systemctl start myapp'
+                                        execCommand: 'rm -rf * && unzip /tmp/hardis-awesome-app.zip && npm i --save express && systemctl restart myapp'
                                     )
                                 ]
                             )

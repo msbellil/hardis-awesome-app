@@ -6,7 +6,7 @@ pipeline {
                 echo 'Running build automation'
                 sh 'npm install'
                 sh 'ng build'
-                sh 'mkdir dist/hardisawesomeapp.zip'
+                sh 'zip -r hardisawesomeapp.zip dist/hardisawesomeapp'
                 archiveArtifacts artifacts: 'dist/hardisawesomeapp.zip'
             }
         }

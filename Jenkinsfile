@@ -28,7 +28,7 @@ pipeline {
                                         sourceFiles: 'dist/hardis-awesome-app.zip',
                                         removePrefix: 'dist/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'rm -rf * && unzip /tmp/hardis-awesome-app.zip && npm i --save express && sudo systemctl restart hardis-awesome-app'
+                                        execCommand: 'rm -rf * && unzip /tmp/hardis-awesome-app.zip && npm i --save express && sudo systemctl restart hardisawesomeapp'
                                     )
                                 ]
                             )
@@ -55,7 +55,7 @@ pipeline {
                                         sourceFiles: 'dist/hardis-awesome-app.zip',
                                         removePrefix: 'dist/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'rm -rf * && unzip /tmp/hardis-awesome-app.zip && npm i --save express && sudo systemctl restart hardis-awesome-app'
+                                        execCommand: 'rm -rf * && unzip /tmp/hardis-awesome-app.zip && npm i --save express && sudo systemctl restart hardisawesomeapp'
                                     )
                                 ]
                             )

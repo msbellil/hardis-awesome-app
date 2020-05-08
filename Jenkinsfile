@@ -5,6 +5,7 @@ pipeline {
             steps {
                 echo 'Running build automation'
                 sh 'npm install'
+                sh 'ng build'
                 archiveArtifacts artifacts: 'dist/hardisawesomeapp.zip'
             }
         }

@@ -1,8 +1,7 @@
 pipeline {
     agent any
     stages {
-      
-        stage('Build') {
+    stage('Build') {
             steps {
                 echo 'Running build automation'
                 sh 'npm install'
@@ -11,52 +10,19 @@ pipeline {
                 archiveArtifacts artifacts: 'dist/hardis-awesome-app.zip'
             }
         }
-        stage('Deploiement Recette') {
+		
+        stage('Build Docker Image') {
+			echo 'Running build docker image'
             steps {
-              echo 'Running Deploiement Recette'
-
-                    sshPublisher(
-                        failOnError: true,
-                        continueOnError: false,
-                        publishers: [
-                            sshPublisherDesc(
-                                configName: 'recette', 
-                                transfers: [
-                                    sshTransfer(
-                                        sourceFiles: 'dist/hardis-awesome-app.zip',
-                                        removePrefix: 'dist/',
-                                        remoteDirectory: '/tmp',
-                                        execCommand: 'rm -rf * && unzip /tmp/hardis-awesome-app.zip && npm i --save express && sudo systemctl restart hardisawesomeapp'
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                }
-            }
-      
-        stage('Deploiement production') {
-          steps {
-                 input 'Does the staging environment look OK?'
-                milestone(1)
-                    sshPublisher(
-                        failOnError: true,
-                        continueOnError: false,
-                        publishers: [
-                            sshPublisherDesc(
-                                configName: 'production', 
-                                transfers: [
-                                    sshTransfer(
-                                        sourceFiles: 'dist/hardis-awesome-app.zip',
-                                        removePrefix: 'dist/',
-                                        remoteDirectory: '/tmp',
-                                        execCommand: 'rm -rf * && unzip /tmp/hardis-awesome-app.zip && npm i --save express && sudo systemctl restart hardisawesomeapp'
-                                    )
-                                ]
-                            )
-                        ]
-                    )
+                script {
+                    app = docker.build("bllmhd/hardis-awesome-app")
+                    app.inside {
+                        sh 'echo $(curl localhost:9999)'
+                    }
                 }
             }
         }
+      
+   
+    }
 }

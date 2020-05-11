@@ -12,8 +12,8 @@ pipeline {
         }
 		
         stage('Build Docker Image') {
-			echo 'Running build docker image'
             steps {
+              echo 'Running build docker image'
                 script {
                     app = docker.build("bllmhd/hardis-awesome-app")
                     app.inside {

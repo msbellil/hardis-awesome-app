@@ -23,20 +23,24 @@ pipeline {
             }
         }
    
-        stage('Deploiement production') {
+       stage('Deploiement production') {
           steps {
                  input 'Does the staging environment look OK?'
                 milestone(1)
-				   script {
-                        sh "ssh -i '${env.user_rsa_key}' ubuntu@${env.prod_ip} \"docker pull bllmhd/hardis-awesome-app:latest\""
-                        try {
-                            sh "ssh -i '${env.user_rsa_key}' ubuntu@${env.prod_ip} \"docker stop hardis-awesome-app\""
-                            sh "ssh -i '${env.user_rsa_key}' ubuntu@${env.prod_ip} \"docker rm hardis-awesome-app\""
-                        } catch (err) {
-                            echo: 'caught error: $err'
-                        }
-                        sh "ssh -i '${env.user_rsa_key}' ubuntu@${env.prod_ip} \"docker run --restart always --name hardis-awesome-app -p 8080:8080 -d bllmhd/hardis-awesome-app:latest\""
-                    }
+                    sshPublisher(
+                        failOnError: true,
+                        continueOnError: false,
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'production', 
+                                transfers: [
+                                    sshTransfer(
+                                        execCommand: 'docker pull bllmhd/hardis-awesome-app:latest && docker run --restart always --name hardis-awesome-app -p 9999:9999 -d bllmhd/hardis-awesome-app:latest'
+                                    )
+                                ]
+                            )
+                        ]
+                    )
                 }
             }
     }

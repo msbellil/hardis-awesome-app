@@ -13,7 +13,7 @@ pipeline {
                                 configName: 'production', 
                                 transfers: [
                                     sshTransfer(
-                                       execCommand: 'docker pull bllmhd/hardis-awesome-app:latest && [ "$(docker ps -a | grep hardis-awesome-app)" ] && docker stop hardis-awesome-app ' 
+                                       execCommand: 'docker pull bllmhd/hardis-awesome-app:latest && [ "$(docker ps -a | grep hardis-awesome-app)" ] && docker stop hardis-awesome-app && docker rm hardis-awesome-app' 
                                     )
                                 ]
                             )

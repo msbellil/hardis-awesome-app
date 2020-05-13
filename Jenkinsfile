@@ -16,6 +16,15 @@ pipeline {
                                        execCommand: 'docker pull bllmhd/hardis-awesome-app:latest && [ "$(docker ps -a | grep hardis-awesome-app)" ] && docker stop hardis-awesome-app && docker rm hardis-awesome-app' 
                                     )
                                 ]
+                               script {
+                      
+                        try {
+                           docker pull bllmhd/hardis-awesome-app:latest 
+                        } catch (err) {
+                            echo: 'caught error: $err'
+                        }
+                      
+                    }
                             )
                         ]
                     )

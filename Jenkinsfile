@@ -31,7 +31,8 @@ pipeline {
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
                     configs: 'kube.yml',
-                    enableConfigSubstitution: true
+                    enableConfigSubstitution: true,
+                  textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'http://3.12.152.158']
                 )
             }
         }

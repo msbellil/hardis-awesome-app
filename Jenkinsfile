@@ -30,9 +30,7 @@ pipeline {
                 milestone(1)
                 kubernetesDeploy(
                     kubeconfigId: 'kubeconfig',
-                    configs: 'kube.yml',
-                    enableConfigSubstitution: true,
-                  textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'http://3.12.152.158']
+                    configs: 'kube.yml'
                 )
             }
         }

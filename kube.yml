@@ -30,6 +30,11 @@ spec:
         app: hardis-awesome-app
     spec:
       containers:
+        - env:
+            - name: HTTP_PROXY
+            - name: HTTPS_PROXY
+            - name: http_proxy
+            - name: no_proxy
       - name: hardis-awesome-app
         image: hardis-awesome-app:latest
         ports:

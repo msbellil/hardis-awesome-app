@@ -3,7 +3,7 @@ apiVersion: v1
 metadata:
   name: hardis-awesome-app-service
 spec:
-  type: NLoadBalancer
+  type: LoadBalancer
   selector:
     app: hardis-awesome-app
   ports:

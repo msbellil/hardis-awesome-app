@@ -11,5 +11,5 @@ pipeline {
                 archiveArtifacts artifacts: 'dist/hardis-awesome-app.zip'
             }
         }
-       
+    }    
 }
